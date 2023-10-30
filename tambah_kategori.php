@@ -9,13 +9,14 @@
     //Menangkap data yang dikirim dari form
     if(!empty($_POST['save'])){
         $Nama = $_POST['nama_kategori'];
+        $Diskon = $_POST['diskon'];
         //menginput data ke database
-        $a = mysqli_query($koneksi,"insert into kategori values('','$Nama')");
+        $a = mysqli_query($koneksi,"insert into kategori values('','$Nama','$Diskon')");
         if($a){
             //mengalihkan ke halaman kembali
             header("location:tambah_kategori.php");
         }else{
-            echo mysqli_error();
+            echo mysqli_error($koneksi);
         }
     }
 ?>
@@ -31,6 +32,11 @@
                 <td>Nama Kategori</td>
                 <td><input type="text" name="nama_kategori"></td>
             </tr>
+            <tr>
+                <td>Diskon</td>
+                <td><input type="text" name="diskon"></td>
+            </tr>
+            
             <tr>
                 <td></td>
                 <td><input type="submit" name="save"></td>
