@@ -125,7 +125,23 @@ if ($loggedInUserLevel == 1) {
     echo '<a href="hapus_user.php?id=' . $d['id_user'] . '">HAPUS</a>';
 } elseif ($loggedInUserLevel == 2) {
     // Level 2 tidak dapat mengedit dan menghapus
-    echo 'Tidak bisa edit & hapus';
+    echo 'Tidak diizinkan';
+}elseif ($loggedInUserLevel == 3) {
+    // Level 3 dapat mengedit dan menghapus semua level kecuali level 0 dan level 4
+    if ($d['level'] == 1 || $d['level'] == 4) {
+        echo 'Tidak diizinkan';
+    }  if ($d['level'] == 2 || $d['level'] == 3) {
+        echo 'Tidak diizinkan';
+    } 
+
+
+}elseif ($loggedInUserLevel == 4) {
+    // Level 3 dapat mengedit dan menghapus semua level kecuali level 0 dan level 4
+    if ($d['level'] == 1 || $d['level'] == 3) {
+        echo 'Tidak diizinkan';
+    } if ($d['level'] == 2 || $d['level'] == 4) {
+         echo 'tidak diizinkan';
+    }
 }
 ?>
 

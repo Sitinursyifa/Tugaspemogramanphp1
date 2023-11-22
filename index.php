@@ -5,6 +5,7 @@ if(!isset($_SESSION['session_username'])){
     header("location:login.php");
     exit();
 }
+$loggedInUserLevel = isset($_SESSION['level']) ? $_SESSION['level'] : null; // Ambil level user yang sedang login
 
 
 // Tambahkan pesan selamat datang untuk level 0
@@ -112,6 +113,11 @@ if ($_SESSION['level'] == 0) {
     </header>
     <div class="container">
         <div class="contain">
+        <?php
+           
+        if ($loggedInUserLevel != 2) {
+    // Level 0 dapat mengedit dan menghapus semua level
+    ?>
             <a href="tampil_barang.php">
                 <div class="card">
                     <h2>BARANG</h2>
@@ -133,9 +139,9 @@ if ($_SESSION['level'] == 0) {
                     <h2>PENJUALAN</h2>
                 </div>
             </a>
-            <a href="tampil_transaksi.php">
+            <a href="view_report.php">
                 <div class="card">
-                    <h2>TRANSAKSI</h2>
+                    <h2>VIEW REPORT</h2>
                 </div>
             </a>
             <a href="tampil_user.php">
@@ -143,9 +149,12 @@ if ($_SESSION['level'] == 0) {
                     <h2>USER</h2>
                 </div>
             </a>
-            <a href="view_report.php">
+            <?php
+            }
+            ?>
+            <a href="tampil_transaksi.php">
                 <div class="card">
-                    <h2>VIEW REPORT</h2>
+                    <h2>TRANSAKSI</h2>
                 </div>
             </a>
             <a href="logout.php">
